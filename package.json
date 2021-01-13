@@ -1,0 +1,24 @@
+{
+  "name": "guiapress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlosnani/guiapress.git"
+  },
+  "keywords": [
+    "NodeJs",
+    "Blog",
+    "MySQL"
+  ],
+  "author": "Carlos Nani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlosnani/guiapress/issues"
+  },
+  "homepage": "https://github.com/carlosnani/guiapress#readme"
+}
