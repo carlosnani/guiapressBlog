@@ -8,15 +8,22 @@ const connection = require('./database/database');
 app.set('view engine', 'ejs');
 
 // app.use(bodyParser.urlencoded({extends:false}));
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Database
+connection.authenticate()
+          .then(()=>{
+              console.log('Connection established');
+          }).catch((error)=>{
+            console.error(error);
+          })
 
 //Static
 app.use(express.static('public'));
 
 //Router
-app.get('/' , (req, res )=>{ 
+app.get('/' , (req, res )=>{
     res.render('index');
 });
 
