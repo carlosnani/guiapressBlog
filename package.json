@@ -20,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/carlosnani/guiapress/issues"
   },
-  "homepage": "https://github.com/carlosnani/guiapress#readme"
+  "homepage": "https://github.com/carlosnani/guiapress#readme",
+  "dependencies": {
+    "body-parse": "^0.1.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5"
+  }
 }
