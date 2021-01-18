@@ -1,3 +1,7 @@
 body {
-    background: rgb(223, 228, 255);
+    background: rgb(231, 233, 243);
+    font-family: 'Lato', sans-serif;
+} 
+thead {
+    background: #f3f3f3;
 }

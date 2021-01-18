@@ -14,9 +14,12 @@ const Category = require('./categories/Category');
 //View engine
 app.set('view engine', 'ejs');
 
-// app.use(bodyParser.urlencoded({extends:false}));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+ 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// let urlencodedParser = bodyParser.urlencoded({extended: false});
+// let jsonParser = bodyParser.json();
 
 // Database
 connection.authenticate()
@@ -33,16 +36,9 @@ app.use(express.static('public'));
 app.use('/' , categoriescontroller);
 app.use('/' , articlescontroller);
 
-
-
-
 app.get('/' , (req, res )=>{
     res.render('index');
 });
-
-
-
-
 
 
 app.listen(8080, ()=>{
