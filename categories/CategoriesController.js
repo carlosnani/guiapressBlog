@@ -32,13 +32,10 @@ router.get('/admin/categories', (req, res) => {
     })
 });
 
-router.get('/categories/delete', (req, res) => {
-    let id = req.body.id;
-
+router.post('/categories/delete', (req, res) => {
+    var id = req.body.id;
     if(id != undefined) {
-
         if(!isNaN(id)){
-
             Category.destroy({
                 where: {
                     id: id
@@ -46,14 +43,12 @@ router.get('/categories/delete', (req, res) => {
             }).then(() => {
                 res.redirect('/admin/categories');
             }); 
-
         }else{
             res.redirect('/admin/categories');
         }
     }else{
         res.redirect('/admin/categories');
     }
-
 });
  
 module.exports = router;
