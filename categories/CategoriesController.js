@@ -16,7 +16,7 @@ router.post("/categories/save", (req, res) => {
 
         Category.create({
             title: title,
-            slug: slugify(title) 
+            slug: slugify(title , { lower: true,}) 
         }).then(() => {
                 res.redirect('/admin/categories/');
             }
@@ -30,6 +30,30 @@ router.get('/admin/categories', (req, res) => {
     Category.findAll().then((categories) => {
         res.render('admin/categories', {categories: categories} );
     })
+});
+
+router.get('/categories/delete', (req, res) => {
+    let id = req.body.id;
+
+    if(id != undefined) {
+
+        if(!isNaN(id)){
+
+            Category.destroy({
+                where: {
+                    id: id
+                }
+            }).then(() => {
+                res.redirect('/admin/categories');
+            }); 
+
+        }else{
+            res.redirect('/admin/categories');
+        }
+    }else{
+        res.redirect('/admin/categories');
+    }
+
 });
  
 module.exports = router;

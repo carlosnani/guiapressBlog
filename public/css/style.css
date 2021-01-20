@@ -5,3 +5,7 @@ body {
 thead {
     background: #f3f3f3;
 }
+.table-striped tbody tr:nth-of-type(odd) {
+    background: #ffffff;
+}
+ 
