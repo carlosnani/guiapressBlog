@@ -27,7 +27,7 @@
                   <td><%= category.slug %></td>
                   <td>
                      <div class="d-flex justify-content-end">
-                        <button class="btn btn-warning mx-1">Edit</button> 
+                        <a href="/admin/categories/edit/<%= category.id %>" class="btn btn-warning mx-1">Edit</a> 
                         
                         <form method="POST" action="/categories/delete" onsubmit="confirmDelete(event, this)">
                           <input type="hidden" name="id" value="<%= category.id %>">
