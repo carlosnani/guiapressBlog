@@ -10,7 +10,7 @@
     </div>
     <div class="row my-4">         
         <div class="col-md-10"> 
-            <form method="POST" action="/categories/save" class="form-group-lg">
+            <form method="POST" action="/articles/save" class="form-group-lg">
                 <input class="form-control form-control-lg mb-4" name="title" type="text" placeholder="Add a new title" required>
                
                 <textarea class="form-control form-control-lg mb-4" placeholder="Write your article" name="body" id="article"></textarea>
@@ -18,7 +18,7 @@
                 <label class="mt-4">Categories</label> 
                 <select name="category" class="form-control form-control-lg">
                     <% category.forEach((categories)=>{%>
-                        <option value="<%= categories.id %>" > <%= categories.title %> </option>
+                        <option value="<%= categories.id %>" ><%= categories.title %> </option>
                     <% }) %>
                 </select>
 

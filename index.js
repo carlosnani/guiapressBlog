@@ -3,6 +3,9 @@ const app = express();
 const bodyParser = require('body-parser')
 const connection = require('./database/database');
 
+//port running 
+const port = 8080;
+
 //controllers
 const categoriescontroller = require('./categories/CategoriesController');
 const articlescontroller = require('./articles/ArticlesController');
@@ -41,6 +44,6 @@ app.get('/' , (req, res )=>{
 });
 
 
-app.listen(8080, ()=>{
+app.listen(port, ()=>{
     console.log('Serviidor Rodando');
 });
