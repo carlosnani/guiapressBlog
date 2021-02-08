@@ -11,9 +11,9 @@ router.get('/admin/articles', (req, res) => {
         include: [{model: Category}]// puxa os dados da tabela Category por causa do relacionamento. 
        }).then(articles => {
         res.render('admin/articles/index' , {articles: articles}); 
-       }); 
-     
+       });      
 })
+
 
 router.get('/admin/articles/new', (req, res) => {
     Category.findAll().then((category) => {
@@ -36,6 +36,24 @@ router.post('/articles/save', (req, res) => {
     });
 })
 
+router.post('/articles/delete', (req, res) => {
+    var id = req.body.id;
+    if(id != undefined) {
+        if(!isNaN(id)){
+            Article.destroy({
+                where: {
+                    id: id
+                }
+            }).then(() => {
+                res.redirect('/admin/articles');
+            }); 
+        }else{
+            res.redirect('/admin/articles');
+        }
+    }else{
+        res.redirect('/admin/articles');
+    }
+});
  
  
 module.exports = router;

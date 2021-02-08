@@ -40,8 +40,30 @@ app.use('/' , categoriescontroller);
 app.use('/' , articlescontroller);
 
 app.get('/' , (req, res )=>{
-    res.render('index');
+    Articles.findAll({
+        include: [{model: Category}],
+        order: [['id' , 'DESC'],]
+    }).then((articles)=>{
+        res.render('index', {articles: articles});
+    });
 });
+
+app.get('/:slug' , (req ,res)=>{
+    let slug = req.params.slug;
+    Articles.findAll({
+        where: {
+            slug: slug,
+        }
+    }).then((articles)=>{
+        if(articles !== undefined){
+            res.render('./admin/articles/article.ejs' , { articles: articles });
+        } else {
+            res.redirect('/');
+        }
+    }).catch((err)=>{
+        res.redirect('/');
+    })
+})
 
 
 app.listen(port, ()=>{
