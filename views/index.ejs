@@ -12,13 +12,12 @@
 <section class="container">
     <div class="row">
         <div class="col-md-9">
-            <div>
-                
+            <div>                
                 <% articles.forEach((article) => { %>                      
                     <div class="card my-4">
                       <div class="card-body">
                         <h2 class="card-title"><%= article.title %></h2>
-                        <p class="card-text"><span class="font-weight-bold">Category: </span><%=  article.category.title %><span class="font-weight-bold"> | Date: </span> <%=  article.createdAt  %> </p>                        
+                        <p class="card-text"><span class="font-weight-bold">Category: <%= article.category.title %></span> | </span><span class="font-weight-bold">Date: </span> <%=  article.createdAt  %> </p>                        
                         <a href="/<%= article.slug %>" class="btn btn-primary my-4">Veja mais</a>
                       </div>
                     </div>

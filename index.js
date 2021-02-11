@@ -21,9 +21,6 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// let urlencodedParser = bodyParser.urlencoded({extended: false});
-// let jsonParser = bodyParser.json();
-
 // Database
 connection.authenticate()
           .then(()=>{
@@ -41,10 +38,13 @@ app.use('/' , articlescontroller);
 
 app.get('/' , (req, res )=>{
     Articles.findAll({
-        include: [{model: Category}],
-        order: [['id' , 'DESC'],]
+        order: [['id' , 'DESC'],],
+        include: [{model: Category}]
     }).then((articles)=>{
-        res.render('index', {articles: articles});
+        Category.findAll({}).then((categories)=>{
+            res.render('./index' ,{ articles: articles , categories: categories});
+        })
+
     });
 });
 
@@ -56,12 +56,15 @@ app.get('/:slug' , (req ,res)=>{
         }
     }).then((articles)=>{
         if(articles !== undefined){
-            res.render('./admin/articles/article.ejs' , { articles: articles });
+            Category.findAll({}).then((categories)=>{
+                res.render('./article' , { articles: articles , categories: categories});
+            })
         } else {
             res.redirect('/');
         }
     }).catch((err)=>{
         res.redirect('/');
+       
     })
 })
 
