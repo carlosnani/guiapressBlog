@@ -68,6 +68,25 @@ app.get('/:slug' , (req ,res)=>{
     })
 })
 
+app.get('/category/:slug',(req, res)=>{
+    let slug = req.params.slug;
+    Category.findAll({
+        where: { 
+            slug: slug
+         },
+         include: [{model: Articles}]
+    }).then((articles)=>{
+        if(articles !== undefined){
+            Category.findAll({}).then((categories)=>{
+                res.render('./categories' , { articles: articles , categories: categories});
+            })
+        } else {
+            res.redirect('/');
+        }
+    }).catch((err) => {
+        res.redirect('/');
+    })
+})
 
 app.listen(port, ()=>{
     console.log('Serviidor Rodando');

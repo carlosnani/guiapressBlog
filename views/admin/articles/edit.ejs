@@ -1,0 +1,55 @@
+<%- include ('../../partials/header.ejs'); -%>
+<%- include ('../../partials/navbar.ejs'); -%>
+
+<section class="container">
+    <div class="row">
+        <div class="col-md-12 my-4">
+            <h1>Edit Article</h1>
+        <hr>
+    </div>
+    </div>
+    <div class="row my-4">         
+        <div class="col-md-10"> 
+            <form method="POST" action="/articles/save" class="form-group-lg">
+                <input class="form-control form-control-lg mb-4" name="title" type="text" placeholder="Add a new title" required>
+               
+                <textarea class="form-control form-control-lg mb-4" placeholder="Write your article" name="body" id="article"></textarea>
+                
+                <label class="mt-4">Categories</label> 
+                <select name="category" class="form-control form-control-lg">
+                    <% category.forEach((categories)=>{%>
+                        <option value="<%= categories.id %>" ><%= categories.title %> </option>
+                    <% }) %>
+                </select>
+
+                <button type="submit" class="btn btn-primary btn-block my-4">Update</button>
+            </form>         
+            <div id='content' style="display: none">
+                <%- article.body %>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <p>Here you can edirt a article to your blog.<br> 
+            Every article will be in a category.</p>
+        </div>
+    </div>    
+
+</section>    
+
+<%- include ('../../partials/footer.ejs'); -%>
+
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+
+    tinymce.init({
+         language: 'pt_BR',
+         selector: '#article',
+         plugins: [
+             'advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime midia save table paste emoticons'
+         ],
+         init_instance_callback: () => {
+            tinymce.get('article').setContent($('#content').html());
+         }
+    })
+
+</script>
