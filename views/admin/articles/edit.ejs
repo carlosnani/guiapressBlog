@@ -10,15 +10,21 @@
     </div>
     <div class="row my-4">         
         <div class="col-md-10"> 
-            <form method="POST" action="/articles/save" class="form-group-lg">
-                <input class="form-control form-control-lg mb-4" name="title" type="text" placeholder="Add a new title" required>
+            <form method="POST" action="/articles/update" class="form-group-lg">
+                <input type="hidden" value="<%= article.id %>" name="id">
+                <input class="form-control form-control-lg mb-4" name="title" type="text" value="<%= article.title %>" required>
                
                 <textarea class="form-control form-control-lg mb-4" placeholder="Write your article" name="body" id="article"></textarea>
                 
                 <label class="mt-4">Categories</label> 
                 <select name="category" class="form-control form-control-lg">
                     <% category.forEach((categories)=>{%>
-                        <option value="<%= categories.id %>" ><%= categories.title %> </option>
+                        <% if(categories.id == article.categoryId) {%>
+                           <option value="<%= categories.id %>" selected><%= categories.title %></option> 
+                        <% } else { %>
+                            <option value="<%= categories.id %>" ><%= categories.title %></option>
+                        <% } %>   
+                        
                     <% }) %>
                 </select>
 
