@@ -9,6 +9,7 @@ const port = 8080;
 //controllers
 const categoriescontroller = require('./categories/CategoriesController');
 const articlescontroller = require('./articles/ArticlesController');
+const usercontroller = require('./user/UsersController');
 
 //Models
 const Articles = require('./articles/Article');
@@ -35,6 +36,7 @@ app.use(express.static('public'));
 //Routers
 app.use('/' , categoriescontroller);
 app.use('/' , articlescontroller);
+app.use('/', usercontroller);
 
 app.get('/' , (req, res )=>{
     Articles.findAll({
