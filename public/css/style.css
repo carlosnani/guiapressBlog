@@ -8,5 +8,6 @@ thead {
 .table-striped tbody tr:nth-of-type(odd) {
     background: #ffffff;
 }
- 
- 
+i.fas {
+    font-size: 16px;
+}

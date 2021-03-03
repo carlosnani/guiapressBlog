@@ -29,14 +29,14 @@
         <div class="row">
             <div class="col-md-9">
                 <% if(result.page > 2) { %>%>
-                    <a href="/articles/page/<%= result.page - 1 %>" class="btn btn-primary my-4"><< Prev </a>
+                    <a href="/articles/page/<%= result.page - 1 %>" class="btn btn-primary my-4"><i class="fas fa-chevron-left"></i> Prev </a>
                 <% } else if(result.page == 2) { %>
-                    <a href="/" class="btn btn-primary my-4"><< Prev </a>
+                    <a href="/" class="btn btn-primary my-4"><i class="fas fa-chevron-left"></i> Prev </a>
                 <% } %>   
                     
                 
                 <% if(result.next){%>
-                    <a href="/articles/page/<%= result.page + 1 %>" class="btn btn-primary my-4">Next >> </a>
+                    <a href="/articles/page/<%= result.page + 1 %>" class="btn btn-primary my-4">Next <i class="fas fa-chevron-right"></i> </a>
                 <% } %>    
                 <hr>
             </div>

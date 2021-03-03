@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser')
 const connection = require('./database/database');
+const session = require('express-session');
 
 //port running 
 const port = 8080;
@@ -14,10 +15,20 @@ const usercontroller = require('./user/UsersController');
 //Models
 const Articles = require('./articles/Article');
 const Category = require('./categories/Category');
+const { use } = require('./user/UsersController');
 
 //View engine
 app.set('view engine', 'ejs');
 
+//Redis
+
+//Sessions 
+app.use(session({
+    secret: 'sflkewofsdlcodwsfsokd',
+    cookie: {maxAge: 60000 * 60 },
+    resave: false,
+    saveUninitialized: true,
+}));
  
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -66,8 +77,8 @@ app.get('/:slug' , (req ,res)=>{
             res.redirect('/');
         }
     }).catch((err)=>{
-        res.redirect('/');
-       
+        console.log(err)
+        res.redirect('/');       
     })
 })
 

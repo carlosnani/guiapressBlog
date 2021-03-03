@@ -1,12 +1,13 @@
-const express = require('express');
-const router = express.Router();
+const express   = require('express');
+const router    = express.Router();
 
-const Category = require('../categories/Category');
+const adminAuth = require('../middlewares/adminAuth');
+const Category  = require('../categories/Category');
 
-const Article = require('./Article');
-const slugify = require('slugify');
+const Article   = require('./Article');
+const slugify   = require('slugify');
 
-router.get('/admin/articles', (req, res) => {
+router.get('/admin/articles', adminAuth, (req, res) => {
        Article.findAll({
         include: [{model: Category}],
         order: [['id' , 'DESC'],],// puxa os dados da tabela Category por causa do relacionamento. 
