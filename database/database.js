@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 
-const connect = new Sequelize('guiapress', 'root', 'xxxx', {
+const connection = new Sequelize('ciklo', 'root', 'xxxx', {
     host: 'localhost',
     dialect: 'mysql',
     timezone: '-03:00'
 }) 
 
-module.exports = connect;
+module.exports = connection;
